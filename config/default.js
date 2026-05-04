@@ -13,6 +13,9 @@ env.require = (key) => {
 };
 
 module.exports = {
-  app: { port: env('PORT', 6969) },
+  // Always use Fly.io's injected PORT
+  app: { port: env('PORT', 3000) },
+
+  // Your MongoDB URL stays the same
   db: { url: env.require('MONGODB_URL') },
 };

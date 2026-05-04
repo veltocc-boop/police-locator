@@ -6,8 +6,8 @@ import app from './';
 
 const server = createServer(app);
 
-// ✅ Use Fly port OR fallback
-const port = process.env.PORT || config.get('app.port');
+// Convert port to number safely
+const port = Number(process.env.PORT) || Number(config.get('app.port')) || 3000;
 
 connectDb(config.get('db.url'))
   .then(() => {

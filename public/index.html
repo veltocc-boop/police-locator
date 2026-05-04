@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Police Locator</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #0d1117;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #58a6ff;
+        }
+
+        .container {
+            margin-top: 40px;
+            width: 90%;
+            max-width: 600px;
+            background: #161b22;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #58a6ff;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #238636;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #2ea043;
+        }
+
+        #output {
+            margin-top: 20px;
+            padding: 15px;
+            background: #0d1117;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+            border: 1px solid #30363d;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            color: #8b949e;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Police Locator</header>
+
+    <div class="container">
+        <h2>API Tester</h2>
+
+        <button onclick="fetchData('/civilians')">Hent Civilians</button>
+        <button onclick="fetchData('/cops')">Hent Cops</button>
+
+        <div id="output">Trykk på en knapp for å hente data…</div>
+    </div>
+
+    <footer>LAGET AV NIKOLAS 8D</footer>
+
+    <script>
+        async function fetchData(route) {
+            try {
+                const res = await fetch(route);
+                const data = await res.json();
+                document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+            } catch (err) {
+                document.getElementById("output").textContent = "Feil: " + err;
+            }
+        }
+    </script>
+</body>
+</html>
